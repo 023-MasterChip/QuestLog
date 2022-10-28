@@ -13,7 +13,8 @@ import javax.swing.JOptionPane;
  */
 public class LoginFrame extends javax.swing.JFrame
 {
-     //public static String user;
+     public static String user;
+     public static int userId;
 
     /**
      * Creates new form LoginFrame
@@ -197,7 +198,8 @@ public class LoginFrame extends javax.swing.JFrame
             ResultSet rs = st.executeQuery();
             if (rs.next()) 
             {
-                //user = rs.getString("name");
+                user = rs.getString("name");
+                userId=rs.getInt("id");
                 new MainFrame().setVisible(true);
                 
                 dispose();

@@ -35,10 +35,10 @@ public class UpdateFrame extends javax.swing.JFrame
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(420, 350));
 
-        jPanel1.setBackground(new java.awt.Color(250, 247, 240));
+        jPanel1.setBackground(new java.awt.Color(20, 195, 142));
 
         jLabel3.setFont(new java.awt.Font("Okami", 0, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(152, 168, 248));
+        jLabel3.setForeground(new java.awt.Color(227, 252, 191));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("QUESTlog");
 

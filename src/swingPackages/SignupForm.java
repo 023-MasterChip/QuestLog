@@ -33,16 +33,16 @@ public class SignupForm extends javax.swing.JFrame
     {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel2 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel4 = new javax.swing.JLabel();
         emailField = new javax.swing.JTextField();
         userField = new javax.swing.JTextField();
         passwordField = new javax.swing.JPasswordField();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        signupBtn = new javax.swing.JButton();
+        javax.swing.JLabel jLabel1 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
+        javax.swing.JLabel jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,16 +66,16 @@ public class SignupForm extends javax.swing.JFrame
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/padlock.png"))); // NOI18N
         jLabel4.setText("Password :");
 
-        jButton1.setBackground(new java.awt.Color(184, 241, 176));
-        jButton1.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(20, 195, 142));
-        jButton1.setText("Signup");
-        jButton1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 252, 191)));
-        jButton1.addActionListener(new java.awt.event.ActionListener()
+        signupBtn.setBackground(new java.awt.Color(184, 241, 176));
+        signupBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
+        signupBtn.setForeground(new java.awt.Color(20, 195, 142));
+        signupBtn.setText("Signup");
+        signupBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 252, 191)));
+        signupBtn.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton1ActionPerformed(evt);
+                signupBtnActionPerformed(evt);
             }
         });
 
@@ -84,16 +84,16 @@ public class SignupForm extends javax.swing.JFrame
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUESTlog");
 
-        jButton2.setBackground(new java.awt.Color(184, 241, 176));
-        jButton2.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(20, 195, 142));
-        jButton2.setText("Back");
-        jButton2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 252, 191)));
-        jButton2.addActionListener(new java.awt.event.ActionListener()
+        backBtn.setBackground(new java.awt.Color(184, 241, 176));
+        backBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
+        backBtn.setForeground(new java.awt.Color(20, 195, 142));
+        backBtn.setText("Back");
+        backBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 252, 191)));
+        backBtn.addActionListener(new java.awt.event.ActionListener()
         {
             public void actionPerformed(java.awt.event.ActionEvent evt)
             {
-                jButton2ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -133,9 +133,9 @@ public class SignupForm extends javax.swing.JFrame
                                 .addComponent(emailField, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(242, 242, 242)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(100, 100, 100)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(signupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,8 +159,8 @@ public class SignupForm extends javax.swing.JFrame
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(signupBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(37, 37, 37))
         );
 
@@ -178,15 +178,15 @@ public class SignupForm extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
-    {//GEN-HEADEREND:event_jButton2ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backBtnActionPerformed
+    {//GEN-HEADEREND:event_backBtnActionPerformed
         // TODO add your handling code here:
         new LoginFrame().setVisible(true);
         dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
-    {//GEN-HEADEREND:event_jButton1ActionPerformed
+    private void signupBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_signupBtnActionPerformed
+    {//GEN-HEADEREND:event_signupBtnActionPerformed
         // TODO add your handling code here:
         
         String email = emailField.getText();
@@ -220,7 +220,7 @@ public class SignupForm extends javax.swing.JFrame
 
         }
         catch(Exception e){ System.out.println(e);}
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_signupBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -239,16 +239,11 @@ public class SignupForm extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JTextField emailField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField passwordField;
+    private javax.swing.JButton signupBtn;
     private javax.swing.JTextField userField;
     // End of variables declaration//GEN-END:variables
 }

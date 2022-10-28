@@ -5,6 +5,8 @@
 package swingPackages;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  *
@@ -19,10 +21,25 @@ public class MainFrame extends javax.swing.JFrame
      */
     public MainFrame()
     {
-        // LoginFrame l = new LoginFrame();
-         //String user_name = l.user;
-         //userLabel.setText(user_name);
+         
         initComponents();
+        
+        setUser();
+        setDate();
+    }
+    
+    void setUser()
+    {
+        LoginFrame l = new LoginFrame();
+         String user_name = l.user;
+         userLabel.setText(user_name);
+    }
+    
+    void setDate()
+    {
+        Date d = new Date();
+        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
+        dateLabel.setText(s.format(d));
     }
 
     /**
@@ -43,12 +60,15 @@ public class MainFrame extends javax.swing.JFrame
         sidePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
-        jLabel3 = new javax.swing.JLabel();
+        javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
+        questAdd = new javax.swing.JButton();
+        questDelete = new javax.swing.JButton();
         utilPanel = new javax.swing.JPanel();
         dateLabel = new javax.swing.JLabel();
         userLabel = new javax.swing.JLabel();
         addBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
+        exitBtn = new javax.swing.JButton();
         deleteBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -93,13 +113,14 @@ public class MainFrame extends javax.swing.JFrame
                 .addGap(18, 18, 18)
                 .addComponent(objDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(noteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(noteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         sidePanel.setBackground(new java.awt.Color(20, 195, 142));
 
         jList1.setBackground(new java.awt.Color(0, 255, 171));
+        jList1.setBorder(null);
         jList1.setModel(new javax.swing.AbstractListModel<String>()
         {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
@@ -113,6 +134,30 @@ public class MainFrame extends javax.swing.JFrame
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("QUESTlog");
 
+        questAdd.setBackground(new java.awt.Color(184, 241, 176));
+        questAdd.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        questAdd.setForeground(new java.awt.Color(20, 195, 142));
+        questAdd.setText("ADD");
+        questAdd.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                questAddActionPerformed(evt);
+            }
+        });
+
+        questDelete.setBackground(new java.awt.Color(184, 241, 176));
+        questDelete.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
+        questDelete.setForeground(new java.awt.Color(20, 195, 142));
+        questDelete.setText("DELETE");
+        questDelete.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                questDeleteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout sidePanelLayout = new javax.swing.GroupLayout(sidePanel);
         sidePanel.setLayout(sidePanelLayout);
         sidePanelLayout.setHorizontalGroup(
@@ -125,27 +170,37 @@ public class MainFrame extends javax.swing.JFrame
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(sidePanelLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(questAdd)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(questDelete)
+                .addGap(23, 23, 23))
         );
         sidePanelLayout.setVerticalGroup(
             sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, sidePanelLayout.createSequentialGroup()
-                .addContainerGap(18, Short.MAX_VALUE)
+                .addContainerGap(17, Short.MAX_VALUE)
                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addGap(27, 27, 27)
+                .addGroup(sidePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(questAdd)
+                    .addComponent(questDelete))
+                .addGap(15, 15, 15))
         );
 
         utilPanel.setBackground(new java.awt.Color(184, 241, 176));
         utilPanel.setPreferredSize(new java.awt.Dimension(135, 65));
 
-        dateLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 14)); // NOI18N
+        dateLabel.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
         dateLabel.setForeground(new java.awt.Color(20, 195, 142));
         dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        dateLabel.setText("dd/mm/yyyy");
+        dateLabel.setText("date");
         dateLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        userLabel.setFont(new java.awt.Font("Malgun Gothic", 0, 14)); // NOI18N
+        userLabel.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
         userLabel.setForeground(new java.awt.Color(20, 195, 142));
         userLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         userLabel.setText("user");
@@ -164,45 +219,75 @@ public class MainFrame extends javax.swing.JFrame
         editBtn.setBackground(new java.awt.Color(227, 252, 191));
         editBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/editing.png"))); // NOI18N
+        editBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                editBtnActionPerformed(evt);
+            }
+        });
+
+        exitBtn.setBackground(new java.awt.Color(227, 252, 191));
+        exitBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
+        exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/exit.png"))); // NOI18N
+        exitBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                exitBtnActionPerformed(evt);
+            }
+        });
 
         deleteBtn.setBackground(new java.awt.Color(227, 252, 191));
         deleteBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/minus.png"))); // NOI18N
+        deleteBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
+                deleteBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout utilPanelLayout = new javax.swing.GroupLayout(utilPanel);
         utilPanel.setLayout(utilPanelLayout);
         utilPanelLayout.setHorizontalGroup(
             utilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(utilPanelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(addBtn)
-                .addGap(18, 18, 18)
-                .addComponent(editBtn)
-                .addGap(18, 18, 18)
-                .addComponent(deleteBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(31, 31, 31)
                 .addGroup(utilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(dateLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(userLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+                    .addGroup(utilPanelLayout.createSequentialGroup()
+                        .addComponent(addBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(editBtn))
+                    .addGroup(utilPanelLayout.createSequentialGroup()
+                        .addGap(112, 112, 112)
+                        .addComponent(deleteBtn)))
+                .addGap(18, 18, 18)
+                .addComponent(exitBtn)
+                .addGap(147, 147, 147)
+                .addGroup(utilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(userLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         utilPanelLayout.setVerticalGroup(
             utilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(utilPanelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(utilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, utilPanelLayout.createSequentialGroup()
-                        .addComponent(userLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(dateLabel))
                     .addGroup(utilPanelLayout.createSequentialGroup()
-                        .addGap(8, 8, 8)
+                        .addComponent(userLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(utilPanelLayout.createSequentialGroup()
+                        .addGap(9, 9, 9)
                         .addGroup(utilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(editBtn)
                             .addComponent(addBtn)
-                            .addComponent(deleteBtn))
-                        .addGap(0, 6, Short.MAX_VALUE)))
-                .addContainerGap())
+                            .addComponent(deleteBtn)
+                            .addComponent(exitBtn))))
+                .addGap(12, 12, 12))
         );
 
         javax.swing.GroupLayout questPanelLayout = new javax.swing.GroupLayout(questPanel);
@@ -247,6 +332,46 @@ public class MainFrame extends javax.swing.JFrame
         new AddQuest().setVisible(true);
     }//GEN-LAST:event_addBtnActionPerformed
 
+    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitBtnActionPerformed
+    {//GEN-HEADEREND:event_exitBtnActionPerformed
+        // TODO add your handling code here:
+        
+        //Logout btn
+        
+        new LoginFrame().setVisible(true);
+        dispose();
+    }//GEN-LAST:event_exitBtnActionPerformed
+
+    private void questDeleteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_questDeleteActionPerformed
+    {//GEN-HEADEREND:event_questDeleteActionPerformed
+        // TODO add your handling code here:
+        
+        //Delete Quest btn
+    }//GEN-LAST:event_questDeleteActionPerformed
+
+    private void questAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_questAddActionPerformed
+    {//GEN-HEADEREND:event_questAddActionPerformed
+        // TODO add your handling code here:
+        
+        //Add Quest btn
+        
+        new AddQuest().setVisible(true);
+    }//GEN-LAST:event_questAddActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_editBtnActionPerformed
+    {//GEN-HEADEREND:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        
+        //Edit quest details btn
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_deleteBtnActionPerformed
+    {//GEN-HEADEREND:event_deleteBtnActionPerformed
+        // TODO add your handling code here:
+        
+        //Delete objective btn
+    }//GEN-LAST:event_deleteBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -272,12 +397,14 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JLabel dateLabel;
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton exitBtn;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel noteLabel;
     private javax.swing.JScrollPane objDisplay;
+    private javax.swing.JButton questAdd;
+    private javax.swing.JButton questDelete;
     private javax.swing.JPanel questPanel;
     private javax.swing.JLabel questTitle;
     private javax.swing.JPanel sidePanel;

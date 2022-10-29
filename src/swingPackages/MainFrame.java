@@ -337,6 +337,7 @@ public class MainFrame extends javax.swing.JFrame
         
         //Add new quest
         new AddQuest().setVisible(true);
+        dispose();
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitBtnActionPerformed

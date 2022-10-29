@@ -191,6 +191,7 @@ public class AddQuest extends javax.swing.JFrame
             if (rs==1) 
             {
                 JOptionPane.showMessageDialog(jPanel1, "Quest added");
+                new MainFrame().setVisible(true);
                 dispose();
             } 
             else 

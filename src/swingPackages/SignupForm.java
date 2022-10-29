@@ -189,7 +189,7 @@ public class SignupForm extends javax.swing.JFrame
     {//GEN-HEADEREND:event_signupBtnActionPerformed
         // TODO add your handling code here:
         
-        String email = emailField.getText();
+        String name = emailField.getText();
         String userName = userField.getText();
         char[] ch= passwordField.getPassword();
         String password = new String(ch);
@@ -200,7 +200,7 @@ public class SignupForm extends javax.swing.JFrame
             Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/quest","root","");
             PreparedStatement st = con.prepareStatement("INSERT INTO users(name,username,password) VALUES(?,?,?)");
 
-            st.setString(1, email);
+            st.setString(1, name);
             st.setString(2, userName);
             st.setString(3, password);
 

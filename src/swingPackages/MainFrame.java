@@ -7,6 +7,7 @@ package swingPackages;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.DefaultListModel;
 
 /**
  *
@@ -26,8 +27,37 @@ public class MainFrame extends javax.swing.JFrame
         
         setUser();
         setDate();
+        DefaultListModel listmodel = new DefaultListModel();
+        getList();
     }
     
+    void getList()
+    {
+        DefaultListModel listmodel = new DefaultListModel();
+        
+         try{  
+        Class.forName("com.mysql.jdbc.Driver");  
+        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/quest","root","");   
+        PreparedStatement st = con.prepareStatement("Select * from quest where user_id=?");
+        
+        LoginFrame l = new LoginFrame();
+        int user_id = l.userId;
+        st.setInt(1, user_id);
+            
+        ResultSet rs = st.executeQuery();
+    
+           while(rs.next()){
+           
+           String quest = rs.getString("quest_title");          
+           
+           jList1.setModel(listmodel);
+           listmodel.addElement(quest);
+            }
+           
+            
+        con.close();  
+        }catch(Exception e){ System.out.println(e);} 
+    }
     void setUser()
     {
         LoginFrame l = new LoginFrame();
@@ -119,12 +149,6 @@ public class MainFrame extends javax.swing.JFrame
         sidePanel.setBackground(new java.awt.Color(20, 195, 142));
 
         jList1.setBackground(new java.awt.Color(0, 255, 171));
-        jList1.setBorder(null);
-        jList1.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel3.setFont(new java.awt.Font("Okami", 0, 48)); // NOI18N
@@ -241,14 +265,11 @@ public class MainFrame extends javax.swing.JFrame
             utilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(utilPanelLayout.createSequentialGroup()
                 .addGap(31, 31, 31)
-                .addGroup(utilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(utilPanelLayout.createSequentialGroup()
-                        .addComponent(addBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(editBtn))
-                    .addGroup(utilPanelLayout.createSequentialGroup()
-                        .addGap(112, 112, 112)
-                        .addComponent(deleteBtn)))
+                .addComponent(addBtn)
+                .addGap(18, 18, 18)
+                .addComponent(editBtn)
+                .addGap(18, 18, 18)
+                .addComponent(deleteBtn)
                 .addGap(18, 18, 18)
                 .addComponent(exitBtn)
                 .addGap(147, 147, 147)

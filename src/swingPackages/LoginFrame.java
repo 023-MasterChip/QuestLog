@@ -13,8 +13,9 @@ import javax.swing.JOptionPane;
  */
 public class LoginFrame extends javax.swing.JFrame
 {
-     public static String user;
-     public static int userId;
+
+    public static String user;
+    public static int userId;
 
     /**
      * Creates new form LoginFrame
@@ -22,8 +23,7 @@ public class LoginFrame extends javax.swing.JFrame
     public LoginFrame()
     {
         initComponents();
-       
-        
+
     }
 
     /**
@@ -181,37 +181,42 @@ public class LoginFrame extends javax.swing.JFrame
     private void loginActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loginActionPerformed
     {//GEN-HEADEREND:event_loginActionPerformed
         // TODO add your handling code here:
-        
-        String userName = usrField.getText();
-         char[] ch= psdField.getPassword();
-         String password = new String(ch);
-         
-         try
-         {  
-            Class.forName("com.mysql.jdbc.Driver");  
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/quest","root","");   
-            PreparedStatement st = con.prepareStatement("Select * from users where username=? and password=?");
 
-                st.setString(1, userName);
-                st.setString(2, password);  
+        String userName = usrField.getText();
+        char[] ch = psdField.getPassword();
+        String password = new String(ch);
+
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "Select * from users where username=? and password=?");
+
+            st.setString(1, userName);
+            st.setString(2, password);
 
             ResultSet rs = st.executeQuery();
-            if (rs.next()) 
+            if (rs.next())
             {
                 user = rs.getString("name");
-                userId=rs.getInt("id");
+                userId = rs.getInt("id");
                 new MainFrame().setVisible(true);
-                
+
                 dispose();
-            } 
-            else 
+            }
+            else
             {
                 JOptionPane.showMessageDialog(jPanel1, "Login Failed");
             }
 
-            con.close();  
+            con.close();
         }
-        catch(Exception e){ System.out.println(e);}
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_loginActionPerformed
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_signupActionPerformed

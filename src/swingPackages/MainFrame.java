@@ -15,56 +15,63 @@ import javax.swing.DefaultListModel;
  */
 public class MainFrame extends javax.swing.JFrame
 {
-    
 
     /**
      * Creates new form MainFrame
      */
     public MainFrame()
     {
-         
+
         initComponents();
-        
+
         setUser();
         setDate();
         DefaultListModel listmodel = new DefaultListModel();
         getList();
     }
-    
+
     void getList()
     {
         DefaultListModel listmodel = new DefaultListModel();
-        
-         try{  
-        Class.forName("com.mysql.jdbc.Driver");  
-        Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/quest","root","");   
-        PreparedStatement st = con.prepareStatement("Select * from quest where user_id=?");
-        
-        LoginFrame l = new LoginFrame();
-        int user_id = l.userId;
-        st.setInt(1, user_id);
-            
-        ResultSet rs = st.executeQuery();
-    
-           while(rs.next()){
-           
-           String quest = rs.getString("quest_title");          
-           
-           jList1.setModel(listmodel);
-           listmodel.addElement(quest);
+
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "Select * from quest where user_id=?");
+
+            LoginFrame l = new LoginFrame();
+            int user_id = l.userId;
+            st.setInt(1, user_id);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next())
+            {
+
+                String quest = rs.getString("quest_title");
+
+                jList1.setModel(listmodel);
+                listmodel.addElement(quest);
             }
-           
-            
-        con.close();  
-        }catch(Exception e){ System.out.println(e);} 
+
+            con.close();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }
+
     void setUser()
     {
         LoginFrame l = new LoginFrame();
-         String user_name = l.user;
-         userLabel.setText(user_name);
+        String user_name = l.user;
+        userLabel.setText(user_name);
     }
-    
+
     void setDate()
     {
         Date d = new Date();
@@ -79,7 +86,8 @@ public class MainFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         questPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
@@ -123,15 +131,14 @@ public class MainFrame extends javax.swing.JFrame
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
-                .addComponent(questTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+            .addGroup(mainPanelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(noteLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(objDisplay))
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(noteLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
+                    .addComponent(objDisplay, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addComponent(questTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -160,8 +167,10 @@ public class MainFrame extends javax.swing.JFrame
         questAdd.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         questAdd.setForeground(new java.awt.Color(20, 195, 142));
         questAdd.setText("ADD");
-        questAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        questAdd.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 questAddActionPerformed(evt);
             }
         });
@@ -170,8 +179,10 @@ public class MainFrame extends javax.swing.JFrame
         questDelete.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         questDelete.setForeground(new java.awt.Color(20, 195, 142));
         questDelete.setText("DELETE");
-        questDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        questDelete.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 questDeleteActionPerformed(evt);
             }
         });
@@ -226,8 +237,10 @@ public class MainFrame extends javax.swing.JFrame
         addBtn.setBackground(new java.awt.Color(227, 252, 191));
         addBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 addBtnActionPerformed(evt);
             }
         });
@@ -235,8 +248,10 @@ public class MainFrame extends javax.swing.JFrame
         editBtn.setBackground(new java.awt.Color(227, 252, 191));
         editBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/editing.png"))); // NOI18N
-        editBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        editBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 editBtnActionPerformed(evt);
             }
         });
@@ -244,8 +259,10 @@ public class MainFrame extends javax.swing.JFrame
         exitBtn.setBackground(new java.awt.Color(227, 252, 191));
         exitBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/exit.png"))); // NOI18N
-        exitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 exitBtnActionPerformed(evt);
             }
         });
@@ -253,8 +270,10 @@ public class MainFrame extends javax.swing.JFrame
         deleteBtn.setBackground(new java.awt.Color(227, 252, 191));
         deleteBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/minus.png"))); // NOI18N
-        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        deleteBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 deleteBtnActionPerformed(evt);
             }
         });
@@ -288,9 +307,9 @@ public class MainFrame extends javax.swing.JFrame
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(utilPanelLayout.createSequentialGroup()
                         .addComponent(userLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(dateLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(30, 30, 30))
+                        .addGap(36, 36, 36))
                     .addGroup(utilPanelLayout.createSequentialGroup()
                         .addGroup(utilPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(addBtn)
@@ -336,7 +355,7 @@ public class MainFrame extends javax.swing.JFrame
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addBtnActionPerformed
     {//GEN-HEADEREND:event_addBtnActionPerformed
         // TODO add your handling code here:
-        
+
         //Add new quest
         new AddQuest().setVisible(true);
         dispose();
@@ -345,9 +364,8 @@ public class MainFrame extends javax.swing.JFrame
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitBtnActionPerformed
     {//GEN-HEADEREND:event_exitBtnActionPerformed
         // TODO add your handling code here:
-        
+
         //Logout btn
-        
         new LoginFrame().setVisible(true);
         dispose();
     }//GEN-LAST:event_exitBtnActionPerformed
@@ -355,30 +373,31 @@ public class MainFrame extends javax.swing.JFrame
     private void questDeleteActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_questDeleteActionPerformed
     {//GEN-HEADEREND:event_questDeleteActionPerformed
         // TODO add your handling code here:
-        
+
         //Delete Quest btn
+        
+        
     }//GEN-LAST:event_questDeleteActionPerformed
 
     private void questAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_questAddActionPerformed
     {//GEN-HEADEREND:event_questAddActionPerformed
         // TODO add your handling code here:
-        
+
         //Add Quest btn
-        
         new AddQuest().setVisible(true);
     }//GEN-LAST:event_questAddActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_editBtnActionPerformed
     {//GEN-HEADEREND:event_editBtnActionPerformed
         // TODO add your handling code here:
-        
+
         //Edit quest details btn
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_deleteBtnActionPerformed
     {//GEN-HEADEREND:event_deleteBtnActionPerformed
         // TODO add your handling code here:
-        
+
         //Delete objective btn
     }//GEN-LAST:event_deleteBtnActionPerformed
 
@@ -387,10 +406,6 @@ public class MainFrame extends javax.swing.JFrame
      */
     public static void main(String args[])
     {
-         
-         
-            
-                 
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()

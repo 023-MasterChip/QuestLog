@@ -188,17 +188,19 @@ public class SignupForm extends javax.swing.JFrame
     private void signupBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_signupBtnActionPerformed
     {//GEN-HEADEREND:event_signupBtnActionPerformed
         // TODO add your handling code here:
-        
+
         String name = emailField.getText();
         String userName = userField.getText();
-        char[] ch= passwordField.getPassword();
+        char[] ch = passwordField.getPassword();
         String password = new String(ch);
 
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/quest","root","");
-            PreparedStatement st = con.prepareStatement("INSERT INTO users(name,username,password) VALUES(?,?,?)");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "INSERT INTO users(name,username,password) VALUES(?,?,?)");
 
             st.setString(1, name);
             st.setString(2, userName);
@@ -206,12 +208,12 @@ public class SignupForm extends javax.swing.JFrame
 
             int rs = st.executeUpdate();
 
-            if (rs==1) 
+            if (rs == 1)
             {
                 new LoginFrame().setVisible(true);
                 dispose();
-            } 
-            else 
+            }
+            else
             {
                 JOptionPane.showMessageDialog(jPanel1, "SignUp Failed");
             }
@@ -219,7 +221,10 @@ public class SignupForm extends javax.swing.JFrame
             con.close();
 
         }
-        catch(Exception e){ System.out.println(e);}
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_signupBtnActionPerformed
 
     /**
@@ -227,7 +232,7 @@ public class SignupForm extends javax.swing.JFrame
      */
     public static void main(String args[])
     {
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()
         {

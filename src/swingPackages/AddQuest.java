@@ -22,33 +22,31 @@ public class AddQuest extends javax.swing.JFrame
     public AddQuest()
     {
         initComponents();
-        
-       
+
     }
+
     String setDate()
     {
         String date;
         java.util.Date d = new java.util.Date();
         SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
-         return date = s.format(d);
+        return date = s.format(d);
     }
-    
+
     int getId()
     {
         int id;
-         LoginFrame F = new LoginFrame();
-         return id = F.userId;
+        LoginFrame F = new LoginFrame();
+        return id = F.userId;
     }
-    
+
     String setTime()
     {
         String time;
-         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
-         Date date = new Date();
-         return time =formatter.format(date);
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss");
+        Date date = new Date();
+        return time = formatter.format(date);
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -167,43 +165,44 @@ public class AddQuest extends javax.swing.JFrame
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addBtnActionPerformed
     {//GEN-HEADEREND:event_addBtnActionPerformed
         // TODO add your handling code here:
-        
+
         //Add quest
         String questName = questField.getText();
         String dateNew = setDate();
         String timeNew = setTime();
         int idNew = getId();
-        
+
         try
         {
-            Class.forName("com.mysql.jdbc.Driver");  
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/quest","root","");
-             PreparedStatement st = con.prepareStatement("INSERT INTO quest(quest_title,date,time,user_id) VALUES(?,?,?,?)");
-            
-            st.setString(1,questName);
-            st.setString(2,dateNew);
-            st.setString(3,timeNew);
-            st.setInt(4,idNew);
-            
-            
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "INSERT INTO quest(quest_title,date,time,user_id) VALUES(?,?,?,?)");
+
+            st.setString(1, questName);
+            st.setString(2, dateNew);
+            st.setString(3, timeNew);
+            st.setInt(4, idNew);
+
             int rs = st.executeUpdate();
 
-            if (rs==1) 
+            if (rs == 1)
             {
                 JOptionPane.showMessageDialog(jPanel1, "Quest added");
                 new MainFrame().setVisible(true);
                 dispose();
-            } 
-            else 
+            }
+            else
             {
                 JOptionPane.showMessageDialog(jPanel1, "Failed to add quest");
             }
-            
-            
-            
-            
+
         }
-        catch(Exception e){ System.out.println(e);}
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_backBtnActionPerformed
@@ -217,7 +216,7 @@ public class AddQuest extends javax.swing.JFrame
      */
     public static void main(String args[])
     {
-       
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable()

@@ -247,11 +247,14 @@ public class UpdateFrame extends javax.swing.JFrame
             if (rs == 1)
             {
                 JOptionPane.showMessageDialog(jPanel1, "Objective updated");
+                new MainFrame().setVisible(true);
                 dispose();
             }
             else
             {
                 JOptionPane.showMessageDialog(jPanel1, "Failed to update");
+                new MainFrame().setVisible(true);
+                dispose();
             }
         }
         catch (Exception e)

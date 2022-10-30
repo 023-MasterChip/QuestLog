@@ -29,8 +29,8 @@ public class MainFrame extends javax.swing.JFrame
 
         setUser();
         setDate();
-        DefaultListModel listmodel = new DefaultListModel();
         getList();
+       
     }
 
     void getList()
@@ -67,6 +67,46 @@ public class MainFrame extends javax.swing.JFrame
             System.out.println(e);
         }
     }
+    
+    void getObjList()
+    {
+         DefaultListModel listmodel = new DefaultListModel();
+
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "Select * from quest_obj where quest_id=?");
+
+            st.setInt(1, questId);
+
+            ResultSet rs = st.executeQuery();
+
+            
+            if (rs.next() == false)
+            { 
+                objList.setModel(listmodel);
+                listmodel.removeAllElements();
+            }
+            else { 
+                do { 
+                    String obj = rs.getString("obj_name");
+
+                    objList.setModel(listmodel);
+                    listmodel.addElement(obj);
+                } while (rs.next());
+            }
+
+
+            con.close();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+    }
 
     void setUser()
     {
@@ -89,13 +129,13 @@ public class MainFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         questPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
         questTitle = new javax.swing.JLabel();
         objDisplay = new javax.swing.JScrollPane();
+        objList = new javax.swing.JList<>();
         noteLabel = new javax.swing.JLabel();
         sidePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -124,6 +164,10 @@ public class MainFrame extends javax.swing.JFrame
 
         objDisplay.setBackground(new java.awt.Color(184, 241, 176));
         objDisplay.setForeground(new java.awt.Color(184, 241, 176));
+
+        objList.setBackground(new java.awt.Color(184, 241, 176));
+        objList.setForeground(new java.awt.Color(102, 102, 102));
+        objDisplay.setViewportView(objList);
 
         noteLabel.setForeground(new java.awt.Color(0, 255, 171));
         noteLabel.setText("NOTES");
@@ -158,10 +202,8 @@ public class MainFrame extends javax.swing.JFrame
         sidePanel.setBackground(new java.awt.Color(20, 195, 142));
 
         jList1.setBackground(new java.awt.Color(0, 255, 171));
-        jList1.addMouseListener(new java.awt.event.MouseAdapter()
-        {
-            public void mouseClicked(java.awt.event.MouseEvent evt)
-            {
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jList1MouseClicked(evt);
             }
         });
@@ -176,10 +218,8 @@ public class MainFrame extends javax.swing.JFrame
         questAdd.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         questAdd.setForeground(new java.awt.Color(20, 195, 142));
         questAdd.setText("ADD");
-        questAdd.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        questAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 questAddActionPerformed(evt);
             }
         });
@@ -188,10 +228,8 @@ public class MainFrame extends javax.swing.JFrame
         questDelete.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         questDelete.setForeground(new java.awt.Color(20, 195, 142));
         questDelete.setText("DELETE");
-        questDelete.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        questDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 questDeleteActionPerformed(evt);
             }
         });
@@ -246,10 +284,8 @@ public class MainFrame extends javax.swing.JFrame
         addBtn.setBackground(new java.awt.Color(227, 252, 191));
         addBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
-        addBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
             }
         });
@@ -257,10 +293,8 @@ public class MainFrame extends javax.swing.JFrame
         editBtn.setBackground(new java.awt.Color(227, 252, 191));
         editBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/editing.png"))); // NOI18N
-        editBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editBtnActionPerformed(evt);
             }
         });
@@ -268,10 +302,8 @@ public class MainFrame extends javax.swing.JFrame
         exitBtn.setBackground(new java.awt.Color(227, 252, 191));
         exitBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/exit.png"))); // NOI18N
-        exitBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        exitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitBtnActionPerformed(evt);
             }
         });
@@ -279,10 +311,8 @@ public class MainFrame extends javax.swing.JFrame
         deleteBtn.setBackground(new java.awt.Color(227, 252, 191));
         deleteBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/minus.png"))); // NOI18N
-        deleteBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
             }
         });
@@ -440,7 +470,8 @@ public class MainFrame extends javax.swing.JFrame
 
                  questId = rs.getInt("id");
 
-            }            
+            }   
+             getObjList();
 
             con.close();
         }
@@ -479,6 +510,7 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JPanel mainPanel;
     private javax.swing.JLabel noteLabel;
     private javax.swing.JScrollPane objDisplay;
+    private javax.swing.JList<String> objList;
     private javax.swing.JButton questAdd;
     private javax.swing.JButton questDelete;
     private javax.swing.JPanel questPanel;

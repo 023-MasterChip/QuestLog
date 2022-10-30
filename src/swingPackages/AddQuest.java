@@ -16,7 +16,6 @@ import java.util.Date;
 public class AddQuest extends javax.swing.JFrame
 {
 
-    public static int questId;
 
     /**
      * Creates new form AddQuest

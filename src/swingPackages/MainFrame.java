@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
  */
 public class MainFrame extends javax.swing.JFrame
 {
+    public static int questId;
 
     /**
      * Creates new form MainFrame
@@ -418,8 +419,36 @@ public class MainFrame extends javax.swing.JFrame
         JList list = (JList)evt.getSource();
     if (evt.getClickCount() == 1) {
         int index = list.locationToIndex(evt.getPoint());
-        questTitle.setText((String) list.getSelectedValue());
-//        System.out.println(list.getSelectedValue());
+        String qName = (String) list.getSelectedValue();
+        questTitle.setText(qName);
+        
+         try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "Select * from quest where quest_title=?");
+
+           
+            st.setString(1, qName);
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next())
+            {
+
+                 questId = rs.getInt("id");
+
+            }            
+
+            con.close();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+
     }
     }//GEN-LAST:event_jList1MouseClicked
 

@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -87,7 +88,8 @@ public class MainFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         questPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
@@ -155,8 +157,10 @@ public class MainFrame extends javax.swing.JFrame
         sidePanel.setBackground(new java.awt.Color(20, 195, 142));
 
         jList1.setBackground(new java.awt.Color(0, 255, 171));
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jList1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jList1MouseClicked(evt);
             }
         });
@@ -171,8 +175,10 @@ public class MainFrame extends javax.swing.JFrame
         questAdd.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         questAdd.setForeground(new java.awt.Color(20, 195, 142));
         questAdd.setText("ADD");
-        questAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        questAdd.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 questAddActionPerformed(evt);
             }
         });
@@ -181,8 +187,10 @@ public class MainFrame extends javax.swing.JFrame
         questDelete.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         questDelete.setForeground(new java.awt.Color(20, 195, 142));
         questDelete.setText("DELETE");
-        questDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        questDelete.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 questDeleteActionPerformed(evt);
             }
         });
@@ -237,8 +245,10 @@ public class MainFrame extends javax.swing.JFrame
         addBtn.setBackground(new java.awt.Color(227, 252, 191));
         addBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 addBtnActionPerformed(evt);
             }
         });
@@ -246,8 +256,10 @@ public class MainFrame extends javax.swing.JFrame
         editBtn.setBackground(new java.awt.Color(227, 252, 191));
         editBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/editing.png"))); // NOI18N
-        editBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        editBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 editBtnActionPerformed(evt);
             }
         });
@@ -255,8 +267,10 @@ public class MainFrame extends javax.swing.JFrame
         exitBtn.setBackground(new java.awt.Color(227, 252, 191));
         exitBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/exit.png"))); // NOI18N
-        exitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 exitBtnActionPerformed(evt);
             }
         });
@@ -264,8 +278,10 @@ public class MainFrame extends javax.swing.JFrame
         deleteBtn.setBackground(new java.awt.Color(227, 252, 191));
         deleteBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/minus.png"))); // NOI18N
-        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        deleteBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 deleteBtnActionPerformed(evt);
             }
         });
@@ -349,8 +365,7 @@ public class MainFrame extends javax.swing.JFrame
         // TODO add your handling code here:
 
         //Add new quest
-        new AddQuest().setVisible(true);
-        dispose();
+        new UpdateFrame().setVisible(true);
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void exitBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_exitBtnActionPerformed
@@ -368,7 +383,7 @@ public class MainFrame extends javax.swing.JFrame
 
         //Delete Quest btn
         
-        
+        JOptionPane.showMessageDialog(mainPanel, "Select a quest to delete");
     }//GEN-LAST:event_questDeleteActionPerformed
 
     private void questAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_questAddActionPerformed
@@ -384,6 +399,10 @@ public class MainFrame extends javax.swing.JFrame
         // TODO add your handling code here:
 
         //Edit quest details btn
+        
+        //Get obj name nd description from db and set to the fields in updateFrame
+        
+        new UpdateFrame().setVisible(true);
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_deleteBtnActionPerformed
@@ -391,6 +410,8 @@ public class MainFrame extends javax.swing.JFrame
         // TODO add your handling code here:
 
         //Delete objective btn
+        
+        JOptionPane.showMessageDialog(mainPanel, "Select an objective to delete");
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked

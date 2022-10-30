@@ -8,6 +8,7 @@ import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.DefaultListModel;
+import javax.swing.JList;
 
 /**
  *
@@ -86,8 +87,7 @@ public class MainFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         questPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
@@ -118,7 +118,6 @@ public class MainFrame extends javax.swing.JFrame
 
         questTitle.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
         questTitle.setForeground(new java.awt.Color(20, 195, 142));
-        questTitle.setText("Quest Name");
 
         objDisplay.setBackground(new java.awt.Color(184, 241, 176));
         objDisplay.setForeground(new java.awt.Color(184, 241, 176));
@@ -156,6 +155,11 @@ public class MainFrame extends javax.swing.JFrame
         sidePanel.setBackground(new java.awt.Color(20, 195, 142));
 
         jList1.setBackground(new java.awt.Color(0, 255, 171));
+        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jList1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jList1);
 
         jLabel3.setFont(new java.awt.Font("Okami", 0, 48)); // NOI18N
@@ -167,10 +171,8 @@ public class MainFrame extends javax.swing.JFrame
         questAdd.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         questAdd.setForeground(new java.awt.Color(20, 195, 142));
         questAdd.setText("ADD");
-        questAdd.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        questAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 questAddActionPerformed(evt);
             }
         });
@@ -179,10 +181,8 @@ public class MainFrame extends javax.swing.JFrame
         questDelete.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
         questDelete.setForeground(new java.awt.Color(20, 195, 142));
         questDelete.setText("DELETE");
-        questDelete.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        questDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 questDeleteActionPerformed(evt);
             }
         });
@@ -237,10 +237,8 @@ public class MainFrame extends javax.swing.JFrame
         addBtn.setBackground(new java.awt.Color(227, 252, 191));
         addBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
-        addBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
             }
         });
@@ -248,10 +246,8 @@ public class MainFrame extends javax.swing.JFrame
         editBtn.setBackground(new java.awt.Color(227, 252, 191));
         editBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/editing.png"))); // NOI18N
-        editBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editBtnActionPerformed(evt);
             }
         });
@@ -259,10 +255,8 @@ public class MainFrame extends javax.swing.JFrame
         exitBtn.setBackground(new java.awt.Color(227, 252, 191));
         exitBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/exit.png"))); // NOI18N
-        exitBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        exitBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitBtnActionPerformed(evt);
             }
         });
@@ -270,10 +264,8 @@ public class MainFrame extends javax.swing.JFrame
         deleteBtn.setBackground(new java.awt.Color(227, 252, 191));
         deleteBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/minus.png"))); // NOI18N
-        deleteBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
             }
         });
@@ -400,6 +392,15 @@ public class MainFrame extends javax.swing.JFrame
 
         //Delete objective btn
     }//GEN-LAST:event_deleteBtnActionPerformed
+
+    private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+        JList list = (JList)evt.getSource();
+    if (evt.getClickCount() == 1) {
+        int index = list.locationToIndex(evt.getPoint());
+        questTitle.setText((String) list.getSelectedValue());
+//        System.out.println(list.getSelectedValue());
+    }
+    }//GEN-LAST:event_jList1MouseClicked
 
     /**
      * @param args the command line arguments

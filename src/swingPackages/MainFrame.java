@@ -78,7 +78,7 @@ public class MainFrame extends javax.swing.JFrame
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/quest", "root", "");
             PreparedStatement st = con.prepareStatement(
-                    "Select * from quest_obj where quest_id=?");
+                    "Select * from quest_obj where quest_id=? order by date desc");
 
             st.setInt(1, questId);
 
@@ -93,6 +93,7 @@ public class MainFrame extends javax.swing.JFrame
             else { 
                 do { 
                     String obj = rs.getString("obj_name");
+                    
 
                     objList.setModel(listmodel);
                     listmodel.addElement(obj);
@@ -167,10 +168,14 @@ public class MainFrame extends javax.swing.JFrame
 
         objList.setBackground(new java.awt.Color(184, 241, 176));
         objList.setForeground(new java.awt.Color(102, 102, 102));
+        objList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                objListMouseClicked(evt);
+            }
+        });
         objDisplay.setViewportView(objList);
 
         noteLabel.setForeground(new java.awt.Color(0, 255, 171));
-        noteLabel.setText("NOTES");
         noteLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -483,6 +488,45 @@ public class MainFrame extends javax.swing.JFrame
 
     }
     }//GEN-LAST:event_jList1MouseClicked
+
+    private void objListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_objListMouseClicked
+          JList list = (JList)evt.getSource();
+    if (evt.getClickCount() == 1) {
+        int index = list.locationToIndex(evt.getPoint());
+        String qName = (String) list.getSelectedValue();
+        
+         try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "Select * from quest_obj where obj_name=?");
+
+           
+            st.setString(1, qName);
+            
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next())
+            {
+
+                String obj = rs.getString("notes");
+                String obj_date  = rs.getString("date");
+                noteLabel.setText(String.format("%-20s %-20s", obj, obj_date));
+            }   
+           
+            
+            con.close();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+
+    }
+    }//GEN-LAST:event_objListMouseClicked
 
     /**
      * @param args the command line arguments

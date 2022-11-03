@@ -16,7 +16,6 @@ import java.util.Date;
 public class AddQuest extends javax.swing.JFrame
 {
 
-    public static int questId;
 
     /**
      * Creates new form AddQuest
@@ -211,6 +210,7 @@ public class AddQuest extends javax.swing.JFrame
             if (rs == 1)
             {
                 JOptionPane.showMessageDialog(jPanel1, "Quest added");
+                new MainFrame().setVisible(false);
                 new MainFrame().setVisible(true);
                 dispose();
             }

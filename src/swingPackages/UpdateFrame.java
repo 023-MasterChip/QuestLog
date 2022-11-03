@@ -32,7 +32,7 @@ public class UpdateFrame extends javax.swing.JFrame
     String setDate()
     {
         Date d = new Date();
-        SimpleDateFormat s = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat s = new SimpleDateFormat("yyyy-MM-dd");
         return (s.format(d));
     }
 
@@ -51,8 +51,7 @@ public class UpdateFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
         javax.swing.JLabel jLabel3 = new javax.swing.JLabel();
@@ -66,7 +65,6 @@ public class UpdateFrame extends javax.swing.JFrame
         resetBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(420, 350));
 
         jPanel1.setBackground(new java.awt.Color(20, 195, 142));
 
@@ -83,10 +81,8 @@ public class UpdateFrame extends javax.swing.JFrame
         jLabel1.setForeground(new java.awt.Color(0, 255, 171));
         jLabel1.setText("Objective");
 
-        objField.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        objField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 objFieldActionPerformed(evt);
             }
         });
@@ -102,10 +98,8 @@ public class UpdateFrame extends javax.swing.JFrame
         addBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
         addBtn.setForeground(new java.awt.Color(20, 195, 142));
         addBtn.setText("ADD");
-        addBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        addBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
             }
         });
@@ -114,20 +108,16 @@ public class UpdateFrame extends javax.swing.JFrame
         backBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
         backBtn.setForeground(new java.awt.Color(20, 195, 142));
         backBtn.setText("BACK");
-        backBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
 
         resetBtn.setBackground(new java.awt.Color(184, 241, 176));
         resetBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Reset.png"))); // NOI18N
-        resetBtn.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        resetBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetBtnActionPerformed(evt);
             }
         });
@@ -139,9 +129,9 @@ public class UpdateFrame extends javax.swing.JFrame
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(167, 167, 167)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(183, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(76, Short.MAX_VALUE)
+                .addContainerGap(87, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -190,18 +180,22 @@ public class UpdateFrame extends javax.swing.JFrame
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(addBtn)
                             .addComponent(backBtn))))
-                .addContainerGap(10, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -229,6 +223,9 @@ public class UpdateFrame extends javax.swing.JFrame
 
         String dateNew = setDate();
         String timeNew = setTime();
+        
+        MainFrame q = new MainFrame();
+        int qID = q.questId;
 
         try
         {
@@ -242,6 +239,7 @@ public class UpdateFrame extends javax.swing.JFrame
             st.setString(2, notes);
             st.setString(3, dateNew);
             st.setString(4, timeNew);
+            st.setInt(5,qID);
             //quest id missing
 
             int rs = st.executeUpdate();
@@ -249,11 +247,14 @@ public class UpdateFrame extends javax.swing.JFrame
             if (rs == 1)
             {
                 JOptionPane.showMessageDialog(jPanel1, "Objective updated");
+                new MainFrame().setVisible(false);
+                new MainFrame().setVisible(true);
                 dispose();
             }
             else
             {
                 JOptionPane.showMessageDialog(jPanel1, "Failed to update");
+                dispose();
             }
         }
         catch (Exception e)

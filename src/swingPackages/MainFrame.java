@@ -130,7 +130,8 @@ public class MainFrame extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents() {
+    private void initComponents()
+    {
 
         questPanel = new javax.swing.JPanel();
         mainPanel = new javax.swing.JPanel();
@@ -138,6 +139,7 @@ public class MainFrame extends javax.swing.JFrame
         objDisplay = new javax.swing.JScrollPane();
         objList = new javax.swing.JList<>();
         noteLabel = new javax.swing.JLabel();
+        isComplete = new javax.swing.JCheckBox();
         sidePanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList<>();
@@ -158,24 +160,27 @@ public class MainFrame extends javax.swing.JFrame
 
         questPanel.setBackground(new java.awt.Color(250, 247, 240));
 
-        mainPanel.setBackground(new java.awt.Color(227, 252, 191));
+        mainPanel.setBackground(new java.awt.Color(68, 68, 68));
 
         questTitle.setFont(new java.awt.Font("Myanmar Text", 1, 18)); // NOI18N
-        questTitle.setForeground(new java.awt.Color(20, 195, 142));
+        questTitle.setForeground(new java.awt.Color(218, 0, 55));
 
         objDisplay.setBackground(new java.awt.Color(184, 241, 176));
         objDisplay.setForeground(new java.awt.Color(184, 241, 176));
 
-        objList.setBackground(new java.awt.Color(184, 241, 176));
-        objList.setForeground(new java.awt.Color(102, 102, 102));
-        objList.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        objList.setBackground(new java.awt.Color(68, 68, 68));
+        objList.setForeground(new java.awt.Color(237, 237, 237));
+        objList.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 objListMouseClicked(evt);
             }
         });
         objDisplay.setViewportView(objList);
 
-        noteLabel.setForeground(new java.awt.Color(0, 255, 171));
+        noteLabel.setBackground(new java.awt.Color(68, 68, 68));
+        noteLabel.setForeground(new java.awt.Color(237, 237, 237));
         noteLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
@@ -189,52 +194,66 @@ public class MainFrame extends javax.swing.JFrame
                     .addComponent(objDisplay, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(questTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(isComplete)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(mainPanelLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(questTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(questTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(mainPanelLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(isComplete)))
                 .addGap(18, 18, 18)
                 .addComponent(objDisplay, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(noteLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
-        sidePanel.setBackground(new java.awt.Color(20, 195, 142));
+        sidePanel.setBackground(new java.awt.Color(23, 23, 23));
 
-        jList1.setBackground(new java.awt.Color(0, 255, 171));
-        jList1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
+        jList1.setBackground(new java.awt.Color(23, 23, 23));
+        jList1.setForeground(new java.awt.Color(237, 237, 237));
+        jList1.addMouseListener(new java.awt.event.MouseAdapter()
+        {
+            public void mouseClicked(java.awt.event.MouseEvent evt)
+            {
                 jList1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jList1);
 
         jLabel3.setFont(new java.awt.Font("Okami", 0, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(227, 252, 191));
+        jLabel3.setForeground(new java.awt.Color(218, 0, 55));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("QUESTlog");
 
-        questAdd.setBackground(new java.awt.Color(184, 241, 176));
+        questAdd.setBackground(new java.awt.Color(68, 68, 68));
         questAdd.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
-        questAdd.setForeground(new java.awt.Color(20, 195, 142));
+        questAdd.setForeground(new java.awt.Color(237, 237, 237));
         questAdd.setText("ADD");
-        questAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        questAdd.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 questAddActionPerformed(evt);
             }
         });
 
-        questDelete.setBackground(new java.awt.Color(184, 241, 176));
+        questDelete.setBackground(new java.awt.Color(68, 68, 68));
         questDelete.setFont(new java.awt.Font("Malgun Gothic", 1, 12)); // NOI18N
-        questDelete.setForeground(new java.awt.Color(20, 195, 142));
+        questDelete.setForeground(new java.awt.Color(237, 237, 237));
         questDelete.setText("DELETE");
-        questDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        questDelete.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 questDeleteActionPerformed(evt);
             }
         });
@@ -272,52 +291,60 @@ public class MainFrame extends javax.swing.JFrame
                 .addGap(15, 15, 15))
         );
 
-        utilPanel.setBackground(new java.awt.Color(184, 241, 176));
+        utilPanel.setBackground(new java.awt.Color(23, 23, 23));
         utilPanel.setPreferredSize(new java.awt.Dimension(135, 65));
 
         dateLabel.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
-        dateLabel.setForeground(new java.awt.Color(20, 195, 142));
+        dateLabel.setForeground(new java.awt.Color(218, 0, 55));
         dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         dateLabel.setText("date");
         dateLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         userLabel.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
-        userLabel.setForeground(new java.awt.Color(20, 195, 142));
+        userLabel.setForeground(new java.awt.Color(218, 0, 55));
         userLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         userLabel.setText("user");
 
-        addBtn.setBackground(new java.awt.Color(227, 252, 191));
+        addBtn.setBackground(new java.awt.Color(237, 237, 237));
         addBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         addBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/add.png"))); // NOI18N
-        addBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        addBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 addBtnActionPerformed(evt);
             }
         });
 
-        editBtn.setBackground(new java.awt.Color(227, 252, 191));
+        editBtn.setBackground(new java.awt.Color(237, 237, 237));
         editBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         editBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/editing.png"))); // NOI18N
-        editBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        editBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 editBtnActionPerformed(evt);
             }
         });
 
-        exitBtn.setBackground(new java.awt.Color(227, 252, 191));
+        exitBtn.setBackground(new java.awt.Color(237, 237, 237));
         exitBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         exitBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/exit.png"))); // NOI18N
-        exitBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        exitBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 exitBtnActionPerformed(evt);
             }
         });
 
-        deleteBtn.setBackground(new java.awt.Color(227, 252, 191));
+        deleteBtn.setBackground(new java.awt.Color(237, 237, 237));
         deleteBtn.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         deleteBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/minus.png"))); // NOI18N
-        deleteBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
+        deleteBtn.addActionListener(new java.awt.event.ActionListener()
+        {
+            public void actionPerformed(java.awt.event.ActionEvent evt)
+            {
                 deleteBtnActionPerformed(evt);
             }
         });
@@ -550,6 +577,7 @@ public class MainFrame extends javax.swing.JFrame
     private javax.swing.JButton deleteBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JButton exitBtn;
+    private javax.swing.JCheckBox isComplete;
     private javax.swing.JList<String> jList1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPanel mainPanel;

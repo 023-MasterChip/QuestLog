@@ -46,29 +46,29 @@ public class SignupForm extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(20, 195, 142));
+        jPanel1.setBackground(new java.awt.Color(237, 237, 237));
 
         jLabel2.setFont(new java.awt.Font("Malgun Gothic", 0, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 255, 171));
+        jLabel2.setForeground(new java.awt.Color(23, 23, 23));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/email.png"))); // NOI18N
         jLabel2.setText("Name :");
 
         jLabel3.setFont(new java.awt.Font("Malgun Gothic", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 255, 171));
+        jLabel3.setForeground(new java.awt.Color(23, 23, 23));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/user.png"))); // NOI18N
         jLabel3.setText("Username :");
 
         jLabel4.setFont(new java.awt.Font("Malgun Gothic", 0, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 255, 171));
+        jLabel4.setForeground(new java.awt.Color(23, 23, 23));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/padlock.png"))); // NOI18N
         jLabel4.setText("Password :");
 
-        signupBtn.setBackground(new java.awt.Color(184, 241, 176));
+        signupBtn.setBackground(new java.awt.Color(68, 68, 68));
         signupBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
-        signupBtn.setForeground(new java.awt.Color(20, 195, 142));
+        signupBtn.setForeground(new java.awt.Color(237, 237, 237));
         signupBtn.setText("Signup");
         signupBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 252, 191)));
         signupBtn.addActionListener(new java.awt.event.ActionListener()
@@ -80,13 +80,13 @@ public class SignupForm extends javax.swing.JFrame
         });
 
         jLabel1.setFont(new java.awt.Font("Okami", 0, 120)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(227, 252, 191));
+        jLabel1.setForeground(new java.awt.Color(218, 0, 55));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("QUESTlog");
 
-        backBtn.setBackground(new java.awt.Color(184, 241, 176));
+        backBtn.setBackground(new java.awt.Color(68, 68, 68));
         backBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
-        backBtn.setForeground(new java.awt.Color(20, 195, 142));
+        backBtn.setForeground(new java.awt.Color(237, 237, 237));
         backBtn.setText("Back");
         backBtn.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 252, 191)));
         backBtn.addActionListener(new java.awt.event.ActionListener()
@@ -98,7 +98,7 @@ public class SignupForm extends javax.swing.JFrame
         });
 
         jLabel5.setFont(new java.awt.Font("Okami", 0, 30)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(227, 252, 191));
+        jLabel5.setForeground(new java.awt.Color(218, 0, 55));
         jLabel5.setText("AD ASTRA ABYSSOSQUE");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

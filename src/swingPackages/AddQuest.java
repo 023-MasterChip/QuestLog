@@ -70,20 +70,21 @@ public class AddQuest extends javax.swing.JFrame
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(20, 195, 142));
+        jPanel1.setBackground(new java.awt.Color(237, 237, 237));
 
         jLabel3.setFont(new java.awt.Font("Okami", 0, 48)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(227, 252, 191));
+        jLabel3.setForeground(new java.awt.Color(218, 0, 55));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("QUESTlog");
 
         jLabel1.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 255, 171));
+        jLabel1.setForeground(new java.awt.Color(23, 23, 23));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Quest Name");
 
-        addBtn.setBackground(new java.awt.Color(184, 241, 176));
-        addBtn.setForeground(new java.awt.Color(20, 195, 142));
+        addBtn.setBackground(new java.awt.Color(68, 68, 68));
+        addBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
+        addBtn.setForeground(new java.awt.Color(237, 237, 237));
         addBtn.setText("ADD");
         addBtn.addActionListener(new java.awt.event.ActionListener()
         {
@@ -93,8 +94,9 @@ public class AddQuest extends javax.swing.JFrame
             }
         });
 
-        backBtn.setBackground(new java.awt.Color(184, 241, 176));
-        backBtn.setForeground(new java.awt.Color(20, 195, 142));
+        backBtn.setBackground(new java.awt.Color(68, 68, 68));
+        backBtn.setFont(new java.awt.Font("Malgun Gothic", 1, 14)); // NOI18N
+        backBtn.setForeground(new java.awt.Color(237, 237, 237));
         backBtn.setText("BACK");
         backBtn.addActionListener(new java.awt.event.ActionListener()
         {
@@ -105,10 +107,10 @@ public class AddQuest extends javax.swing.JFrame
         });
 
         jLabel4.setFont(new java.awt.Font("Okami", 0, 30)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(227, 252, 191));
+        jLabel4.setForeground(new java.awt.Color(218, 0, 55));
         jLabel4.setText("AD ASTRA ABYSSOSQUE");
 
-        resetBtn.setBackground(new java.awt.Color(184, 241, 176));
+        resetBtn.setBackground(new java.awt.Color(237, 237, 237));
         resetBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/Reset.png"))); // NOI18N
         resetBtn.addActionListener(new java.awt.event.ActionListener()
         {
@@ -132,39 +134,37 @@ public class AddQuest extends javax.swing.JFrame
                         .addGap(75, 75, 75)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(questField, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(questField, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(resetBtn))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(31, 31, 31)
                                 .addComponent(addBtn)
                                 .addGap(60, 60, 60)
-                                .addComponent(backBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                                .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(backBtn))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(132, 132, 132)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(23, 23, 23))
+                .addContainerGap(27, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(resetBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel4)
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(questField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(addBtn)
-                            .addComponent(backBtn))))
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(questField, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resetBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addBtn)
+                    .addComponent(backBtn))
                 .addGap(49, 49, 49))
         );
 

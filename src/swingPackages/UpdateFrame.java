@@ -7,9 +7,12 @@ package swingPackages;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import static swingPackages.MainFrame.qName;
+import static swingPackages.MainFrame.qsName;
 
 /**
  *
@@ -17,13 +20,49 @@ import javax.swing.JOptionPane;
  */
 public class UpdateFrame extends javax.swing.JFrame
 {
-
+        public static int uKey;
     /**
      * Creates new form UpdateFrame
      */
     public UpdateFrame()
     {
         initComponents();
+        
+        if(qName != null && qsName != null ){
+                       
+             try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "SELECT * FROM quest_obj JOIN quest ON quest_obj.quest_id=quest.id where quest.quest_title=? and quest_obj.obj_name=?");
+
+             
+            st.setString(1, qsName);
+            st.setString(2, qName);           
+           
+
+            ResultSet rs = st.executeQuery();
+
+            while (rs.next())
+            {
+                objField.setText(qName);
+                
+                String notes = rs.getString("notes");
+                txtField.setText(notes);
+                uKey = 1;
+
+            }   
+             
+
+            con.close();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        }
 
         setDate();
         setTime();
@@ -237,9 +276,15 @@ public class UpdateFrame extends javax.swing.JFrame
 
         String dateNew = setDate();
         String timeNew = setTime();
+        int complete=0;
+         if(objComplete.isSelected()){
+               complete=1;
+            }
         
         MainFrame q = new MainFrame();
         int qID = q.questId;
+        
+        if(uKey==0){
 
         try
         {
@@ -254,14 +299,14 @@ public class UpdateFrame extends javax.swing.JFrame
             st.setString(3, dateNew);
             st.setString(4, timeNew);
             st.setInt(5,qID);
-            //quest id missing
+
 
             int rs = st.executeUpdate();
 
             if (rs == 1)
             {
                 JOptionPane.showMessageDialog(jPanel1, "Objective updated");
-                new MainFrame().setVisible(false);
+                
                 new MainFrame().setVisible(true);
                 dispose();
             }
@@ -274,6 +319,48 @@ public class UpdateFrame extends javax.swing.JFrame
         catch (Exception e)
         {
             System.out.println(e);
+        }
+        }
+        else
+        {
+             try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "update quest_obj set obj_name=?, notes=?, date=?, time=?,complete=? where obj_name=? and quest_id=?");
+            
+
+            st.setString(1, objName);
+            st.setString(2, notes);
+            st.setString(3, dateNew);
+            st.setString(4, timeNew);
+            st.setInt(5,complete);
+            st.setString(6, objName);
+            st.setInt(7,qID);
+ 
+
+            int rs = st.executeUpdate();
+
+            if (rs == 1)
+            {
+                JOptionPane.showMessageDialog(jPanel1, "Objective updated");
+                
+                new MainFrame().setVisible(true);
+                dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(jPanel1, "Failed to update");
+                dispose();
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+            
         }
     }//GEN-LAST:event_addBtnActionPerformed
 

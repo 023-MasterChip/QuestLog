@@ -17,7 +17,9 @@ import javax.swing.JOptionPane;
  */
 public class MainFrame extends javax.swing.JFrame
 {
-    public static int questId;
+    public static int questId=0;
+    public static String qName;
+    public static String qsName;
 
     /**
      * Creates new form MainFrame
@@ -180,6 +182,13 @@ public class MainFrame extends javax.swing.JFrame
         noteLabel.setForeground(new java.awt.Color(237, 237, 237));
         noteLabel.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
+        isComplete.setForeground(new java.awt.Color(0, 0, 0));
+        isComplete.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                isCompleteMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
@@ -191,9 +200,9 @@ public class MainFrame extends javax.swing.JFrame
                     .addComponent(objDisplay, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(mainPanelLayout.createSequentialGroup()
                         .addComponent(questTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(isComplete)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(9, 9, 9)))
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
@@ -444,10 +453,6 @@ public class MainFrame extends javax.swing.JFrame
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_editBtnActionPerformed
     {//GEN-HEADEREND:event_editBtnActionPerformed
         // TODO add your handling code here:
-
-        //Edit quest details btn
-        
-        //Get obj name nd description from db and set to the fields in updateFrame
         
         new UpdateFrame().setVisible(true);
     }//GEN-LAST:event_editBtnActionPerformed
@@ -465,8 +470,8 @@ public class MainFrame extends javax.swing.JFrame
         JList list = (JList)evt.getSource();
     if (evt.getClickCount() == 1) {
         int index = list.locationToIndex(evt.getPoint());
-        String qName = (String) list.getSelectedValue();
-        questTitle.setText(qName);
+        qsName = (String) list.getSelectedValue();
+        questTitle.setText(qsName);
         
          try
         {
@@ -477,7 +482,7 @@ public class MainFrame extends javax.swing.JFrame
                     "Select * from quest where quest_title=?");
 
            
-            st.setString(1, qName);
+            st.setString(1, qsName);
 
             ResultSet rs = st.executeQuery();
 
@@ -503,7 +508,7 @@ public class MainFrame extends javax.swing.JFrame
           JList list = (JList)evt.getSource();
     if (evt.getClickCount() == 1) {
         int index = list.locationToIndex(evt.getPoint());
-        String qName = (String) list.getSelectedValue();
+        qName = (String) list.getSelectedValue();
         
          try
         {
@@ -511,10 +516,11 @@ public class MainFrame extends javax.swing.JFrame
             Connection con = DriverManager.getConnection(
                     "jdbc:mysql://localhost:3306/quest", "root", "");
             PreparedStatement st = con.prepareStatement(
-                    "Select * from quest_obj where obj_name=?");
+                    "Select * from quest_obj where obj_name=? and quest_id=?");
 
            
             st.setString(1, qName);
+            st.setInt(2, questId);
             
 
             ResultSet rs = st.executeQuery();
@@ -537,6 +543,82 @@ public class MainFrame extends javax.swing.JFrame
 
     }
     }//GEN-LAST:event_objListMouseClicked
+
+    private void isCompleteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_isCompleteMouseClicked
+        
+        if(questId==0){
+            JOptionPane.showMessageDialog(mainPanel, "Finish Objectives to complete Quest!");
+            isComplete.setSelected(false);
+        }
+        else{
+        try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "Select * from quest_obj where quest_id=? and complete=0");
+
+           
+            st.setInt(1, questId);
+            
+
+            ResultSet rs = st.executeQuery();
+
+            if (rs.next())
+            {
+                JOptionPane.showMessageDialog(mainPanel, "Finish Objectives to complete Quest!");
+                isComplete.setSelected(false);
+                
+            }   
+            else
+            {
+                
+                try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection conn = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement stm = con.prepareStatement(
+                    "update quest set complete=? where id=?");         
+
+            int complete=1;
+            stm.setInt(1,complete);
+            stm.setInt(2,questId);
+           
+ 
+
+            int rst = stm.executeUpdate();
+
+            if (rst == 1)
+            {
+                JOptionPane.showMessageDialog(questPanel, "Quest Completed");
+                
+                new MainFrame().setVisible(true);
+                dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(questPanel, "Failed to update");
+                dispose();
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+                
+            }
+           
+            
+            con.close();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+        }
+    }//GEN-LAST:event_isCompleteMouseClicked
 
     /**
      * @param args the command line arguments

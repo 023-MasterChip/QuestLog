@@ -337,7 +337,7 @@ public class UpdateFrame extends javax.swing.JFrame
             st.setString(3, dateNew);
             st.setString(4, timeNew);
             st.setInt(5,complete);
-            st.setString(6, objName);
+            st.setString(6, qName);
             st.setInt(7,qID);
  
 

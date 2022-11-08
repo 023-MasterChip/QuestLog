@@ -188,6 +188,11 @@ public class MainFrame extends javax.swing.JFrame
                 isCompleteMouseClicked(evt);
             }
         });
+        isComplete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isCompleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
@@ -467,10 +472,12 @@ public class MainFrame extends javax.swing.JFrame
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+       int comp=0;
         JList list = (JList)evt.getSource();
     if (evt.getClickCount() == 1) {
         int index = list.locationToIndex(evt.getPoint());
         qsName = (String) list.getSelectedValue();
+         isComplete.setSelected(false);
         questTitle.setText(qsName);
         
          try
@@ -490,8 +497,12 @@ public class MainFrame extends javax.swing.JFrame
             {
 
                  questId = rs.getInt("id");
+                 comp = rs.getInt("complete");
 
-            }   
+            }  
+            if(comp==1){
+                isComplete.setSelected(true);
+            }
              getObjList();
 
             con.close();
@@ -619,6 +630,10 @@ public class MainFrame extends javax.swing.JFrame
         }
         }
     }//GEN-LAST:event_isCompleteMouseClicked
+
+    private void isCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isCompleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_isCompleteActionPerformed
 
     /**
      * @param args the command line arguments

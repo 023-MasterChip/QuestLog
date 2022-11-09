@@ -4,12 +4,16 @@
  */
 package swingPackages;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.ListCellRenderer;
 
 /**
  *
@@ -22,6 +26,7 @@ public class MainFrame extends javax.swing.JFrame
     public static String qsName;
     public static int comp=0;
     public static int ObjCheck=0;
+    public static int obj_comp=0;
 
     /**
      * Creates new form MainFrame
@@ -29,13 +34,33 @@ public class MainFrame extends javax.swing.JFrame
     public MainFrame()
     {
 
-        initComponents();
+        initComponents();       
+       
 
         setUser();
         setDate();
         getList();
+//        objList.setCellRenderer(new MyListCellRenderer());        
        
     }
+    
+//     private class MyListCellRenderer extends DefaultListCellRenderer {
+//     
+//      
+//
+//      @Override
+//      public Component getListCellRendererComponent(JList<?> list,
+//            Object value, int index, boolean isSelected, boolean cellHasFocus) {
+//         Component superRenderer = super.getListCellRendererComponent(list, value, index, isSelected,
+//               cellHasFocus);
+//
+//         if (obj_comp == 1) {           
+//            setForeground(Color.red);
+//         }
+//
+//         return superRenderer;
+//      }
+//   }
 
     void getList()
     {
@@ -97,14 +122,16 @@ public class MainFrame extends javax.swing.JFrame
             }
             else { 
                 ObjCheck = 1;
+               
                 do { 
+                    
                     String obj = rs.getString("obj_name");
-                    int obj_comp = rs.getInt("complete");
-                    if(obj_comp==1){
-                        //change color here
-                    }
+//                    obj_comp = rs.getInt("complete");
+                   
                     objList.setModel(listmodel);
                     listmodel.addElement(obj);
+                
+                    
                 } while (rs.next());
             }
 
@@ -631,7 +658,14 @@ public class MainFrame extends javax.swing.JFrame
 
                 String obj = rs.getString("notes");
                 String obj_date  = rs.getString("date");
-                noteLabel.setText(String.format("%-20s %-20s", obj, obj_date));
+                obj_comp = rs.getInt("complete");
+                String oComp = "completed";
+                if(obj_comp == 0){
+                    noteLabel.setText(String.format("%-20s %-20s", obj, obj_date));
+               }
+                else{
+                    noteLabel.setText(String.format("%-20s %-20s %-20s", obj, obj_date,oComp));
+                }
             }   
            
             

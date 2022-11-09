@@ -20,6 +20,8 @@ public class MainFrame extends javax.swing.JFrame
     public static int questId=0;
     public static String qName;
     public static String qsName;
+    public static int comp=0;
+    public static int ObjCheck=0;
 
     /**
      * Creates new form MainFrame
@@ -89,14 +91,18 @@ public class MainFrame extends javax.swing.JFrame
             
             if (rs.next() == false)
             { 
+                ObjCheck = 0;
                 objList.setModel(listmodel);
                 listmodel.removeAllElements();
             }
             else { 
+                ObjCheck = 1;
                 do { 
                     String obj = rs.getString("obj_name");
-                    
-
+                    int obj_comp = rs.getInt("complete");
+                    if(obj_comp==1){
+                        //change color here
+                    }
                     objList.setModel(listmodel);
                     listmodel.addElement(obj);
                 } while (rs.next());
@@ -423,9 +429,17 @@ public class MainFrame extends javax.swing.JFrame
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addBtnActionPerformed
     {//GEN-HEADEREND:event_addBtnActionPerformed
         // TODO add your handling code here:
-
+        if(qsName==null)
+        {
+            JOptionPane.showMessageDialog(mainPanel, "Select a quest!");
+        }
+        else if(comp==1){
+            JOptionPane.showMessageDialog(mainPanel, "Quest Completed!");
+        }
+        else{
         //Add new quest
         new UpdateFrame().setVisible(true);
+        }
         
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -443,8 +457,47 @@ public class MainFrame extends javax.swing.JFrame
         // TODO add your handling code here:
 
         //Delete Quest btn
+        if(qsName==null){
+            JOptionPane.showMessageDialog(mainPanel, "Select a quest to delete");
+        }
+        else if(ObjCheck == 1){
+            JOptionPane.showMessageDialog(mainPanel, "Delete all quest objectives to proceed..");
+        }
+        else
+        {
+             try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "delete from quest where id=?");
+           
+            st.setInt(1,questId);
+
+            int rs = st.executeUpdate();
+
+            if (rs == 1)
+            {
+                JOptionPane.showMessageDialog(mainPanel, "Quest deleted");
+                
+                new MainFrame().setVisible(true);
+                dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(mainPanel, "Failed to delete");
+                dispose();
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+            
+        }
         
-        JOptionPane.showMessageDialog(mainPanel, "Select a quest to delete");
+        
     }//GEN-LAST:event_questDeleteActionPerformed
 
     private void questAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_questAddActionPerformed
@@ -467,12 +520,49 @@ public class MainFrame extends javax.swing.JFrame
         // TODO add your handling code here:
 
         //Delete objective btn
-        
+         if(qName==null){
         JOptionPane.showMessageDialog(mainPanel, "Select an objective to delete");
+         }else{
+             
+              try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "delete from quest_obj where obj_name=? and quest_id=?");
+
+            st.setString(1, qName);
+           
+            st.setInt(2,questId);
+
+
+            int rs = st.executeUpdate();
+
+            if (rs == 1)
+            {
+                ObjCheck = 0;
+                JOptionPane.showMessageDialog(mainPanel, "Objective deleted");
+                
+                new MainFrame().setVisible(true);
+                dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(mainPanel, "Failed to delete");
+                dispose();
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+              
+         }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
-       int comp=0;
+       
         JList list = (JList)evt.getSource();
     if (evt.getClickCount() == 1) {
         int index = list.locationToIndex(evt.getPoint());

@@ -4,12 +4,16 @@
  */
 package swingPackages;
 
+import java.awt.Color;
+import java.awt.Component;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.ListCellRenderer;
 
 /**
  *
@@ -20,6 +24,9 @@ public class MainFrame extends javax.swing.JFrame
     public static int questId=0;
     public static String qName;
     public static String qsName;
+    public static int comp=0;
+    public static int ObjCheck=0;
+    public static int obj_comp=0;
 
     /**
      * Creates new form MainFrame
@@ -27,13 +34,33 @@ public class MainFrame extends javax.swing.JFrame
     public MainFrame()
     {
 
-        initComponents();
+        initComponents();       
+       
 
         setUser();
         setDate();
         getList();
+//        objList.setCellRenderer(new MyListCellRenderer());        
        
     }
+    
+//     private class MyListCellRenderer extends DefaultListCellRenderer {
+//     
+//      
+//
+//      @Override
+//      public Component getListCellRendererComponent(JList<?> list,
+//            Object value, int index, boolean isSelected, boolean cellHasFocus) {
+//         Component superRenderer = super.getListCellRendererComponent(list, value, index, isSelected,
+//               cellHasFocus);
+//
+//         if (obj_comp == 1) {           
+//            setForeground(Color.red);
+//         }
+//
+//         return superRenderer;
+//      }
+//   }
 
     void getList()
     {
@@ -89,16 +116,22 @@ public class MainFrame extends javax.swing.JFrame
             
             if (rs.next() == false)
             { 
+                ObjCheck = 0;
                 objList.setModel(listmodel);
                 listmodel.removeAllElements();
             }
             else { 
+                ObjCheck = 1;
+               
                 do { 
-                    String obj = rs.getString("obj_name");
                     
-
+                    String obj = rs.getString("obj_name");
+//                    obj_comp = rs.getInt("complete");
+                   
                     objList.setModel(listmodel);
                     listmodel.addElement(obj);
+                
+                    
                 } while (rs.next());
             }
 
@@ -186,6 +219,11 @@ public class MainFrame extends javax.swing.JFrame
         isComplete.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 isCompleteMouseClicked(evt);
+            }
+        });
+        isComplete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                isCompleteActionPerformed(evt);
             }
         });
 
@@ -418,9 +456,17 @@ public class MainFrame extends javax.swing.JFrame
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addBtnActionPerformed
     {//GEN-HEADEREND:event_addBtnActionPerformed
         // TODO add your handling code here:
-
+        if(qsName==null)
+        {
+            JOptionPane.showMessageDialog(mainPanel, "Select a quest!");
+        }
+        else if(comp==1){
+            JOptionPane.showMessageDialog(mainPanel, "Quest Completed!");
+        }
+        else{
         //Add new quest
         new UpdateFrame().setVisible(true);
+        }
         
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -438,8 +484,47 @@ public class MainFrame extends javax.swing.JFrame
         // TODO add your handling code here:
 
         //Delete Quest btn
+        if(qsName==null){
+            JOptionPane.showMessageDialog(mainPanel, "Select a quest to delete");
+        }
+        else if(ObjCheck == 1){
+            JOptionPane.showMessageDialog(mainPanel, "Delete all quest objectives to proceed..");
+        }
+        else
+        {
+             try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "delete from quest where id=?");
+           
+            st.setInt(1,questId);
+
+            int rs = st.executeUpdate();
+
+            if (rs == 1)
+            {
+                JOptionPane.showMessageDialog(mainPanel, "Quest deleted");
+                
+                new MainFrame().setVisible(true);
+                dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(mainPanel, "Failed to delete");
+                dispose();
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+            
+        }
         
-        JOptionPane.showMessageDialog(mainPanel, "Select a quest to delete");
+        
     }//GEN-LAST:event_questDeleteActionPerformed
 
     private void questAddActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_questAddActionPerformed
@@ -462,15 +547,54 @@ public class MainFrame extends javax.swing.JFrame
         // TODO add your handling code here:
 
         //Delete objective btn
-        
+         if(qName==null){
         JOptionPane.showMessageDialog(mainPanel, "Select an objective to delete");
+         }else{
+             
+              try
+        {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con = DriverManager.getConnection(
+                    "jdbc:mysql://localhost:3306/quest", "root", "");
+            PreparedStatement st = con.prepareStatement(
+                    "delete from quest_obj where obj_name=? and quest_id=?");
+
+            st.setString(1, qName);
+           
+            st.setInt(2,questId);
+
+
+            int rs = st.executeUpdate();
+
+            if (rs == 1)
+            {
+                ObjCheck = 0;
+                JOptionPane.showMessageDialog(mainPanel, "Objective deleted");
+                
+                new MainFrame().setVisible(true);
+                dispose();
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(mainPanel, "Failed to delete");
+                dispose();
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
+              
+         }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void jList1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jList1MouseClicked
+       
         JList list = (JList)evt.getSource();
     if (evt.getClickCount() == 1) {
         int index = list.locationToIndex(evt.getPoint());
         qsName = (String) list.getSelectedValue();
+         isComplete.setSelected(false);
         questTitle.setText(qsName);
         
          try
@@ -490,8 +614,12 @@ public class MainFrame extends javax.swing.JFrame
             {
 
                  questId = rs.getInt("id");
+                 comp = rs.getInt("complete");
 
-            }   
+            }  
+            if(comp==1){
+                isComplete.setSelected(true);
+            }
              getObjList();
 
             con.close();
@@ -530,7 +658,14 @@ public class MainFrame extends javax.swing.JFrame
 
                 String obj = rs.getString("notes");
                 String obj_date  = rs.getString("date");
-                noteLabel.setText(String.format("%-20s %-20s", obj, obj_date));
+                obj_comp = rs.getInt("complete");
+                String oComp = "completed";
+                if(obj_comp == 0){
+                    noteLabel.setText(String.format("%-20s %-20s", obj, obj_date));
+               }
+                else{
+                    noteLabel.setText(String.format("%-20s %-20s %-20s", obj, obj_date,oComp));
+                }
             }   
            
             
@@ -619,6 +754,10 @@ public class MainFrame extends javax.swing.JFrame
         }
         }
     }//GEN-LAST:event_isCompleteMouseClicked
+
+    private void isCompleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_isCompleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_isCompleteActionPerformed
 
     /**
      * @param args the command line arguments

@@ -188,7 +188,11 @@ public class SignupForm extends javax.swing.JFrame
     private void signupBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_signupBtnActionPerformed
     {//GEN-HEADEREND:event_signupBtnActionPerformed
         // TODO add your handling code here:
-
+        if (emailField.getText().isEmpty() || passwordField.getPassword().length == 0 || userField.getText().isEmpty()  ) {
+            JOptionPane.showMessageDialog(jPanel1, "Please enter user details.");
+        } 
+         else
+        {
         String name = emailField.getText();
         String userName = userField.getText();
         char[] ch = passwordField.getPassword();
@@ -224,6 +228,7 @@ public class SignupForm extends javax.swing.JFrame
         catch (Exception e)
         {
             System.out.println(e);
+        }
         }
     }//GEN-LAST:event_signupBtnActionPerformed
 

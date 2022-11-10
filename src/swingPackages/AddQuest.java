@@ -185,7 +185,11 @@ public class AddQuest extends javax.swing.JFrame
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_addBtnActionPerformed
     {//GEN-HEADEREND:event_addBtnActionPerformed
         // TODO add your handling code here:
-
+        if(questField.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(jPanel1, "Enter quest name");
+        }
+        else{
         //Add quest
         String questName = questField.getText();
         String dateNew = setDate();
@@ -223,6 +227,7 @@ public class AddQuest extends javax.swing.JFrame
         catch (Exception e)
         {
             System.out.println(e);
+        }
         }
     }//GEN-LAST:event_addBtnActionPerformed
 

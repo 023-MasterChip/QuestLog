@@ -180,8 +180,11 @@ public class LoginFrame extends javax.swing.JFrame
 
     private void loginActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_loginActionPerformed
     {//GEN-HEADEREND:event_loginActionPerformed
-        // TODO add your handling code here:
-
+         if (usrField.getText().isEmpty() || psdField.getPassword().length == 0) {
+            JOptionPane.showMessageDialog(jPanel1, "Please enter Username/Password");
+        } 
+         else
+         {
         String userName = usrField.getText();
         char[] ch = psdField.getPassword();
         String password = new String(ch);
@@ -217,6 +220,7 @@ public class LoginFrame extends javax.swing.JFrame
         {
             System.out.println(e);
         }
+         }
     }//GEN-LAST:event_loginActionPerformed
 
     private void signupActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_signupActionPerformed

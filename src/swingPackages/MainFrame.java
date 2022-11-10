@@ -538,8 +538,15 @@ public class MainFrame extends javax.swing.JFrame
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_editBtnActionPerformed
     {//GEN-HEADEREND:event_editBtnActionPerformed
         // TODO add your handling code here:
-        
+         if(qsName==null){
+        JOptionPane.showMessageDialog(mainPanel, "Select a quest.");
+         }
+          else if(comp==1){
+            JOptionPane.showMessageDialog(mainPanel, "Quest Completed!");
+        }
+         else{
         new UpdateFrame().setVisible(true);
+         }
     }//GEN-LAST:event_editBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_deleteBtnActionPerformed

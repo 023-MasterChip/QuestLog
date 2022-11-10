@@ -285,7 +285,10 @@ public class UpdateFrame extends javax.swing.JFrame
         int qID = q.questId;
         
         if(uKey==0){
-
+            if(objField.getText().isEmpty()){
+                JOptionPane.showMessageDialog(jPanel1, "Enter objective details.");
+            }
+            else{
         try
         {
             Class.forName("com.mysql.jdbc.Driver");
@@ -320,9 +323,13 @@ public class UpdateFrame extends javax.swing.JFrame
         {
             System.out.println(e);
         }
+            }
         }
         else
         {
+            if(objField.getText().isEmpty()){
+                JOptionPane.showMessageDialog(jPanel1, "Enter objective details.");
+            }else{
              try
         {
             Class.forName("com.mysql.jdbc.Driver");
@@ -360,7 +367,7 @@ public class UpdateFrame extends javax.swing.JFrame
         {
             System.out.println(e);
         }
-            
+            }   
         }
     }//GEN-LAST:event_addBtnActionPerformed
 
